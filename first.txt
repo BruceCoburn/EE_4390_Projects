@@ -1,0 +1,7 @@
+Remember to do the following:
+
+> git clone (clone url found in GREEN button in repository)
+** create relevant files **
+> git add *
+> git commit -m "Commit message goes here"
+> git push
