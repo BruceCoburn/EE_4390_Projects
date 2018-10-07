@@ -15,12 +15,14 @@ module SimpleSend(dataOut,sw,NumLEDs,clk,reset,Ready2Go);
 	wire [1:0]	qmode;
 	wire		LoadGRBPattern, ShiftPattern, StartCoding, ClrCounter, IncCounter, theBit, bdone;
 	wire [7:0]	Count;
+	wire [3:0]  LEDCount;
 
     ClockDivide     cdiv(Go, clk);
+    LEDCounter      ledC(LEDCount,1'b1, Go, reset);
 	SSStateMachine	sssm(shipGRB,Done,Go,clk,reset,allDone,Ready2Go);
 	GRBStateMachine grbsm(qmode,Done,LoadGRBPattern,ShiftPattern,StartCoding,ClrCounter,IncCounter,
                               shipGRB,theBit,bdone,Count,NumLEDs,clk,reset,allDone);
-	ShiftRegister   shftr(theBit,sw,LoadGRBPattern,ShiftPattern,clk,reset);
+	ShiftRegister   shftr(theBit,sw,LoadGRBPattern,ShiftPattern,LEDCount,clk,reset);
 	BitCounter	btcnt(Count,ClrCounter,IncCounter,clk,reset);
 	NZRbitGEN	nzrgn(dataOut,bdone,qmode,StartCoding,clk,reset);
 endmodule

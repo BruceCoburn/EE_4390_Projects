@@ -5,19 +5,19 @@
 // This implies a max of 10 LED modules could be used (240 bits)
 // For longer LED strips, increase the bit width of the counter
 
-module LEDCounter(Count,ClearCounter,IncCounter,clk,reset);
-  output  [23:0] Count;
-  input   ClearCounter, IncCounter;
+module LEDCounter(Count,IncCounter,clk,reset);
+  output  [3:0] Count;
+  input   IncCounter;
   input   clk, reset;
 
-  reg [23:0] Count, nCount;
+  reg [3:0] Count, nCount;
 
   always @(posedge clk)
     if(reset) Count <= 0;
     else Count <= nCount;
 
-  always @(reset, Count, ClearCounter, IncCounter)
-    if(reset || ClearCounter)
+  always @(reset, Count, IncCounter)
+    if(reset)
       nCount = 0;
     else if(IncCounter)
       nCount = Count+1;

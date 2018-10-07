@@ -8,7 +8,7 @@ module ClockDivide(secTick, clk);
 	reg 	[26:0] 	ClockTick;
 	reg             nextTick;
 	
-	parameter DIVISOR = 27'd100000000;	// Will take our 100MHz on-board clock
+parameter DIVISOR = 27'd100000000;	// Will take our 100MHz on-board clock
 										// and will divide it to make a 1Hz 
 										// "new clock"
 	
