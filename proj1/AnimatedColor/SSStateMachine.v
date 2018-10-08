@@ -26,7 +26,7 @@ module SSStateMachine(shipGRB,Done,Go,clk,reset,allDone,Ready2Go);
 		case(S)
 			SWAIT: 		nS = Go      ? SSHIP    : SWAIT;
 			SSHIP:		nS = Done    ? SRET     : SSHIP;
-      SRET:		  nS = allDone ? SDBOUNCE : SRET;
+            SRET:	    nS = allDone ? SDBOUNCE : SRET;
 			SDBOUNCE:	nS = Go      ? SDBOUNCE : SWAIT;
 			default:	nS = SWAIT;
 		endcase

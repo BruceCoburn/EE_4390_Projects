@@ -6,11 +6,11 @@
 // For longer LED strips, increase the bit width of the counter
 
 module LEDCounter(Count,IncCounter,clk,reset);
-  output  [3:0] Count;
+  output  [11:0] Count;
   input   IncCounter;
   input   clk, reset;
 
-  reg [3:0] Count, nCount;
+  reg [11:0] Count, nCount;
 
   always @(posedge clk)
     if(reset) Count <= 0;
